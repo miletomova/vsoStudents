@@ -17,7 +17,8 @@ class CreateUsersLecturesHomework extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('lecture_id')->unsigned();
             $table->foreign('lecture_id')->references('id')->on('lectures');
-            $table->foreign('user_id')->references('id')->on('users');            
+            $table->foreign('user_id')->references('id')->on('users');  
+            //COMPOSITE PRIMARY KEY          
             $table->primary(array('user_id', 'lecture_id'));
             $table->string('homework_path');
             $table->timestamps();
