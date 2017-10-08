@@ -6,5 +6,8 @@
 </head>
 <body>
 	<h1>Profile</h1>
+	{{ $profile->bio }}
+	{{ $profile->photo_path }}
+	{{ $test }}
 </body>
 </html>
