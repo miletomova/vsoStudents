@@ -23,5 +23,5 @@ Route::get('/contacts', 'ContactsController@index');
 Route::get('/user', 'UserController@index');
 
 Route::resource('user', 'UserController');
+Route::resource('course', 'CoursesController');
 
-Route::get('user', 'UserController@index');

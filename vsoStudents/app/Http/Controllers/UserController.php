@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User; 
+use App\UserLectureHomework;
 
 class UserController extends Controller
 {
@@ -16,7 +17,7 @@ class UserController extends Controller
     {
         $users = User::all();
         
-        return view('users', compact('users'));
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -48,7 +49,10 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user           = User::find($id);
+        $user_homeworks = UserLectureHomework::where('user_id', '=', $id)->get();
+
+        return view('users.show', compact('user', 'user_homeworks'));
     }
 
     /**

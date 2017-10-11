@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class LecturesController extends Controller
+use App\Course;
+
+class CoursesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,10 @@ class LecturesController extends Controller
      */
     public function index()
     {
-        //
+       
+       $courses = Course::all();
+
+       return view('courses.index', compact('courses'));
     }
 
     /**

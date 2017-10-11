@@ -18,8 +18,13 @@ class CreateUsersLecturesHomework extends Migration
             $table->integer('lecture_id')->unsigned();
             $table->foreign('lecture_id')->references('id')->on('lectures');
             $table->foreign('user_id')->references('id')->on('users');  
-            //COMPOSITE PRIMARY KEY          
+            //COMPOSITE PRIMARY KEY
+            //doesn`t guarantee uniqueness!?    
             $table->primary(array('user_id', 'lecture_id'));
+            //
+            //The second param is to manually set the name of the unique index. 
+            //Use an array as the first param to create a unique key across multiple columns.
+            //$table->unique(array('lecture_id', 'user_id'), 'user_lecture');
             $table->string('homework_path');
             $table->timestamps();
         });
