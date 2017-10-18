@@ -28,5 +28,12 @@ Route::get('user/create', 'UserController@create')->name('add_new_user');
 Route::get('user', 'UserController@index')->name('get_all_users');
 Route::get('user/{$id}/edit', 'UserController@edit')->name('edit_user_info');
 Route::get('user/{$id}/edit', 'UserController@edit')->name('edit_user_info');
+// Route::get('/user/{user_id}/delete', [
+// 			'uses'	=> 'UserController@destroy',
+// 			'as'	=> 'delete_user'
+// 			]);
 
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

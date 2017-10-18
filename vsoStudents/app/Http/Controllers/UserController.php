@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User; 
 use App\Profile;
 use App\UserLectureHomework;
+use App\Http\Requests\StoreUserRequest;
+
 
 class UserController extends Controller
 {
@@ -34,10 +36,10 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\StoreUserRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
         
         $user = User::create([
@@ -117,13 +119,14 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($user_id)
     {
-        dd($id);
-        $user = User::find($id);
-        // $user->profile()->delete();
-        $user->delete();
+        $profile = Profile::where('user_id', '=', $user_id);
+        $profile->delete();
 
-        return redirect()->route('users.index')->withSuccess('Student deleted');
+        $user = User::find($user_id);        
+        $user->delete();
+        
+        return redirect()->route('get_all_users')->with(['success'=>'post successfully deleted!']);
     }
 }

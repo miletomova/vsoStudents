@@ -18,6 +18,15 @@
 						Student Form
 					</h3>
 				</div>
+				@if ($errors->any())
+					<div class="alert alert-danger">
+						<ul>
+					    @foreach ($errors->all() as $error)
+					    <li>{{ $error }}</li>
+					     @endforeach       
+					    </ul>
+					</div>
+				@endif
 				<div class="panel-body">					
 					<form action="{{ route('user.store')}}" role="form" method="POST" class="form-horizontal">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -27,6 +36,12 @@
 									<label for="name" class="col-md-2 control-label">
 										 Name           
 									</label>
+
+									
+									@if($errors->has('name'))
+										{{ $errors->first('name') }}
+									@endif
+									
 									<div class="col-md-10">
 										<input type="text"  class="form-control" name="name" id="name" value= "{{ old('name') }}">
 									</div>

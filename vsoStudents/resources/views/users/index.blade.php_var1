@@ -45,9 +45,7 @@
 			<a href="{{ route('edit_user_info', $user->id) }}" class="btn btn-info">Edit</a>
 		</td>
 		<td>
-			{{ Form::open(['method' => 'DELETE', 'route' => ['user.destroy', $user->id]]) }}
-    		{{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
-			{{ Form::close() }}
+			<a href="{{ route('delete_user', ['user_id'=>$user->id]) }}" class="btn btn-danger">Delete User</a>
 		</td>
 	</tr>
 @endforeach
