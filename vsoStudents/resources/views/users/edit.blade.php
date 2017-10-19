@@ -5,7 +5,7 @@
 	<div class="row page-title-row">
 		<div class="col-md-12">
 			<h3>
-				User <small>&raquo; Add New Student</small>
+				User <small>&raquo; Edit Student</small>
 			</h3>
 
 		</div>
@@ -17,6 +17,15 @@
 					<h3 class="panel-title">
 						Student Form
 					</h3>
+					@if ($errors->any())
+					<div class="alert alert-danger">
+						<ul>
+					    @foreach ($errors->all() as $error)
+					    <li>{{ $error }}</li>
+					     @endforeach       
+					    </ul>
+					</div>
+				@endif
 				</div>
 				<div class="panel-body">					
 					<form action="{{ route('user.update', $user->id)}}" role="form" method="POST" class="form-horizontal">
@@ -73,7 +82,7 @@
 											<button type="submit" class="btn btn-primary btn-lg">
 												<i class="fa fa-disk-o">													
 												</i>
-												Save New Student
+												Edit Student
 											</button>
 										</div>
 									</div>

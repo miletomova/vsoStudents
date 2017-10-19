@@ -34,6 +34,3 @@ Route::get('user/{$id}/edit', 'UserController@edit')->name('edit_user_info');
 // 			]);
 
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

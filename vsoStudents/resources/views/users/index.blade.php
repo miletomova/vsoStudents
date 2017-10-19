@@ -15,6 +15,15 @@
 		<h1>Users</h1>
 	</div>	
 </div>
+@if(Session::has('message'))
+<div class="alert alert-success">
+	<button class="close" type="button" data-dismiss="alert">&times;</button>
+	<strong>
+		<i class="fa fa-check-circle fa-lg fa-fw"></i>Success. &nbsp;
+	</strong>
+	{{ Session::get('message') }}
+</div>
+@endif
 <div class="row">
 <table class="table">
 	<tr>

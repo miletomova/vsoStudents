@@ -7,6 +7,7 @@ use App\User;
 use App\Profile;
 use App\UserLectureHomework;
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 
 
 class UserController extends Controller
@@ -56,7 +57,8 @@ class UserController extends Controller
         
             
 
-        return redirect()->route('get_all_users')->withSuccess('New Student Successfully Created');
+        // return redirect()->route('get_all_users')->withSuccess('New Student Successfully Created');
+        return redirect()->route('get_all_users')->with('message', 'New Student Successfully Created');
     }
 
     /**
@@ -93,7 +95,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, $id)
     {
         $user = User::findOrFail($id);
         $user->name      = $request['name'];                
