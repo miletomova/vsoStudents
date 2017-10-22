@@ -17,6 +17,14 @@ class UpdateUserRequest extends FormRequest
         return true;
     }
 
+    public function messages(){
+        return [
+            'email.required'    =>'Полето е задължително',
+            'email.email'       =>'Въведете валиден email',
+            'email.unique'      =>'email съществува в базата данни',
+        ];
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -24,11 +32,11 @@ class UpdateUserRequest extends FormRequest
      */
     public function rules()
     {
-
-        
+        $user = User::find($this->user);
+$id=$user->id;
         return [
             'name'      =>'required|alpha_num',
-            'email'     =>'required|email|unique:users,email,:id',
+            'email'     => 'unique:users,email,' .  $id,
             'password'  =>'required|between:3,16',
             'bio'       =>'required|max:500'
         ];

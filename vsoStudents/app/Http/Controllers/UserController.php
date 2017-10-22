@@ -8,6 +8,7 @@ use App\Profile;
 use App\UserLectureHomework;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use Carbon\Carbon;
 
 
 class UserController extends Controller
@@ -19,9 +20,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users  = User::all();
+        $time   = Carbon::now();
         
-        return view('users.index', compact('users'));
+        return view('users.index', compact(['users', 'time']));
     }
 
     /**
@@ -57,8 +59,8 @@ class UserController extends Controller
         
             
 
-        // return redirect()->route('get_all_users')->withSuccess('New Student Successfully Created');
-        return redirect()->route('get_all_users')->with('message', 'New Student Successfully Created');
+        return redirect()->route('get_all_users')->withSuccess('New Student Successfully Created');
+        // return redirect()->route('get_all_users')->with('message', 'New Student Successfully Created');
     }
 
     /**

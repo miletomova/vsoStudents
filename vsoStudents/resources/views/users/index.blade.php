@@ -15,16 +15,16 @@
 		<h1>Users</h1>
 	</div>	
 </div>
-@if(Session::has('message'))
+@if(Session::has('success'))
 <div class="alert alert-success">
-	<button class="close" type="button" data-dismiss="alert">&times;</button>
 	<strong>
 		<i class="fa fa-check-circle fa-lg fa-fw"></i>Success. &nbsp;
 	</strong>
-	{{ Session::get('message') }}
+	{{ Session::get('success') }}
 </div>
 @endif
 <div class="row">
+Времето сега е {{ $time }}
 <table class="table">
 	<tr>
 		<td>
@@ -43,7 +43,7 @@
 	@foreach($users as $user)
 	<tr>
 		<td>
-			<a href="{{ route('user.show', $user->id)}}">
+			<a href="{{ route('user_info', $user->id)}}">
 				{{ $user->name }}				
 			</a>			
 		</td>

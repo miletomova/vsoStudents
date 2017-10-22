@@ -14,9 +14,15 @@
                         </div>
                     @endif
 
-                    You are logged in as {{ Auth::user()->role }}
-
+                    You are logged in!
                     @include('includes.menu')
+                    user role {{ Auth::user()->role}}
+                    @if(Session::has('message'))
+<div class="alert alert-danger">
+	
+	{{ Session::get('message') }}
+</div>
+@endif
                 </div>
             </div>
         </div>
