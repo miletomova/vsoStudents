@@ -18,11 +18,11 @@
                     @include('includes.menu')
                     user role {{ Auth::user()->role}}
                     @if(Session::has('message'))
-<div class="alert alert-danger">
-	
-	{{ Session::get('message') }}
-</div>
-@endif
+						<div class="alert alert-danger">
+							
+							{{ Session::get('message') }}
+						</div>
+					@endif
                 </div>
             </div>
         </div>

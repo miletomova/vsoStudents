@@ -26,7 +26,7 @@
 <div class="row">
 Времето сега е {{ $time }}
 <table class="table">
-	<tr>
+	<tr>		
 		<td>
 			User Name
 		</td>
@@ -41,7 +41,7 @@
 		</td>
 	</tr>
 	@foreach($users as $user)
-	<tr>
+	<tr>		
 		<td>
 			<a href="{{ route('user_info', $user->id)}}">
 				{{ $user->name }}				

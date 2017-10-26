@@ -4,19 +4,16 @@
 
 
 @section('content')
+
 <h1>{{ $user->name }}</h1>
+<p>
+	{{ $user_profile->photo_path }}
+	<img src="{{asset('temp')}}/{{ $user_profile->photo_path }}" alt="{{ $user_profile->photo_path }}">
+</p>
 <p>
 	{{ $user->profile->bio }}
 </p>
-<p>
-	pucture to be added soon ...
-</p>
-<!-- var 1 Using Eloquent -->
-{{ var_dump($user->user_lecture_homework) }}
-<!-- var2 -->
-@foreach($user_homeworks as $homework)
-{{ $homework->homework_path }}
-@endforeach
+
 
 @endsection
 

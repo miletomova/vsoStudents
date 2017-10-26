@@ -10,6 +10,8 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use Carbon\Carbon;
 
+use File;
+
 
 class UserController extends Controller
 {
@@ -44,16 +46,24 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
+        //clean the directory before uploading a new file
+        File::cleanDirectory('temp\\');   
+
+        $filename = $request->file('my_photo')->getClientOriginalName();
+       
+        $request->file('my_photo')->move('temp', $filename);
+
+        //$path = public_path().'//temp/'.$filename;
         
         $user = User::create([
-                'name'      => $request['name'],                
-                'email'     => $request['email'],
-                'password'  => bcrypt($request['password']),
+                'name'          => $request['name'],                
+                'email'         => $request['email'],
+                'password'      => bcrypt($request['password']),                
             ]);
         
         $user_profile = Profile::create([
-                'bio'           =>  $request['bio'],
-                'photo_path'    =>  $request['photo_path'],
+                'photo_path'    =>  $filename,
+                'bio'           =>  $request['bio'],                
                 'user_id'       =>  $user->id
             ]);
         
@@ -72,9 +82,10 @@ class UserController extends Controller
     public function show($id)
     {
         $user           = User::find($id);
-        $user_homeworks = UserLectureHomework::where('user_id', '=', $id)->get();
+        $user_homeworks = UserLectureHomework::where('user_id', '=', $id)->first();
+        $user_profile   = Profile::where('user_id', '=', $id)->first();
 
-        return view('users.show', compact('user', 'user_homeworks'));
+        return view('users.show', compact('user', 'user_homeworks', 'user_profile'));
     }
 
     /**
